@@ -45,6 +45,7 @@ tblproperties("skip.header.line.count"="1");
 load data inpath '/tmp/sales_order_data.csv' into table sales_order_csv;
 ```
 <hr>  
+
 #### Create an internal hive table which will store data in ORC format "sales_order_data_orc"
 
 ```
