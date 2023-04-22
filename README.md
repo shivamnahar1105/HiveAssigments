@@ -80,6 +80,10 @@ select year_id, sum(sales) as total_sales from sales_order_data_orc group by yea
 ```
 ##### b. Find a product for which maximum orders were placed
 
+```
+select PRODUCTCODE, sum(QUANTITYORDERED) as total_order from sales_order_data_orc GROUP BY PRODUCTCODE ORDER BY total_order DESC LIMIT 1;
+```
+##### c. Calculate the total sales for each quarter
 
 
      
