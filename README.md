@@ -3,5 +3,5 @@
 ### Load data into hdfs 
 
 ```
-hadoop fs -sales_order_data.csv /tmp
+hadoop fs -put sales_order_data.csv /tmp
 ```
