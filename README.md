@@ -85,5 +85,38 @@ select PRODUCTCODE, sum(QUANTITYORDERED) as total_order from sales_order_data_or
 ```
 ##### c. Calculate the total sales for each quarter
 
+```
+select sum(sales) as total_sales, QTR_ID  from sales_order_data_orc group by QTR_ID; 
+```
+##### d. In which quarter sales was minimum
+
+```
+select sum(sales) as total_sales, QTR_ID  from sales_order_data_orc group by QTR_ID order by total_sales limit 1;
+```
+
+
+#### e. In which country sales was maximum and in which country sales was minimum
+
+for minimum 
+
+```
+select country, sum(sales) as total_sales from sales_order_data_orc group by country order by total_sales;
+```
+
+for maximum
+
+```
+select country, sum(sales) as total_sales from sales_order_data_orc group by country order by total_sales desc limit 1;
+```
+
+#### f. Calculate quartelry sales for each city
+
+```
+select CITY,QTR_ID, sum(sales) as total_sales_city_wise from sales_order_data_orc group by CITY,QTR_ID; 
+```
+
+
+
+
 
      
