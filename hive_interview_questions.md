@@ -256,7 +256,7 @@ The metastore can be configured to use different types of databases, such as MyS
 
 The default database name provided by Apache Hive for the metastore is "default". When a new table is created without specifying a database name, it is created in the default database. However, you can create multiple databases in the metastore and create tables in different databases as needed. The databases in the metastore are isolated from each other, and each database has its own set of tables and metadata information. You can switch between databases using the USE statement in HiveQL.
 
-#### 20. 20.Why does Hive not store metadata information in HDFS?
+#### 20.Why does Hive not store metadata information in HDFS?
 
 Hive does not store metadata information in HDFS because HDFS is designed to store large files and is optimized for sequential access, not for random reads and writes. Metadata information, such as table schemas, column names, and partition information, is typically small in size but frequently accessed by the Hive query processor. Storing metadata in HDFS would require frequent small reads and writes, which can be inefficient and slow down the query performance.
 
