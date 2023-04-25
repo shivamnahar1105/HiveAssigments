@@ -66,7 +66,73 @@ The Hive query processor is responsible for processing the queries submitted to 
 
 Overall, the Hive query processor is a complex system that works together to generate an optimized execution plan for the queries submitted by the user. It uses a series of components to parse, analyze, optimize, plan, and execute the queries, taking into consideration various factors such as data location, data format, and query complexity.
 
+#### 6. What are the three different modes in which we can operate Hive?
 
+There are three different modes in which we can operate Hive:
+
+* Local Mode: In Local Mode, Hive runs on a single machine and uses the local file system to store data. This mode is useful for testing and debugging queries on small datasets.
+
+* MapReduce Mode: In MapReduce Mode, Hive uses MapReduce to process data stored in Hadoop Distributed File System (HDFS) or other compatible file systems. This mode is suitable for large datasets that require distributed processing.
+
+* Spark Mode: In Spark Mode, Hive uses Apache Spark as the execution engine to process data stored in HDFS or other compatible file systems. This mode is suitable for large datasets that require distributed processing and can provide better performance than MapReduce Mode.
+
+In addition to these modes, Hive also supports different deployment modes such as Standalone, Pseudo-distributed, and Fully-distributed mode, which determine the number of nodes and the type of installation used for running Hive.
+
+#### 7. Features and Limitations of Hive.
+Hive is a data warehousing tool that enables users to perform data analysis using SQL-like queries. It has several features that make it a popular tool for big data analysis, including:
+
+> Features:
+
+* SQL-like Query Language: Hive provides a SQL-like query language, HiveQL, which makes it easy for users familiar with SQL to write and execute queries.
+
+* Scalability: Hive is designed to handle large datasets and can scale to process terabytes or petabytes of data.
+
+* Integration with Hadoop: Hive is tightly integrated with Hadoop and can leverage Hadoop's distributed computing framework to process data in a distributed manner.
+
+* Extensibility: Hive provides a framework for adding custom user-defined functions (UDFs) and SerDes to handle different data formats.
+
+* Schema on Read: Hive enables users to define the structure of data on read rather than on write, which provides flexibility in working with structured and semi-structured data.
+
+* Security: Hive provides several security features, including authentication and authorization, to control access to data.
+
+> Limitations:
+
+* Latency: Hive is not designed for real-time processing and can have high latency, especially when running complex queries on large datasets.
+
+* Limited Support for Transactions: Hive does not support ACID transactions, which can make it challenging to maintain data consistency.
+
+* Limited Support for Updates and Deletes: Hive is optimized for batch processing and does not provide efficient support for updates and deletes of data.
+
+* Lack of Indexing: Hive does not provide indexing for non-primary key columns, which can result in slow query performance on large datasets.
+
+* Limited Support for Complex Data Types: Hive has limited support for complex data types, such as arrays and maps, which can make it challenging to work with semi-structured data.
+
+Overall, Hive is a powerful tool for big data analysis that provides several useful features but also has some limitations that users should be aware of when deciding whether to use it for their data analysis needs.
+
+
+
+
+
+
+
+#### 8. How to create a Database in HIVE?
+
+```
+create database database_name;
+```
+
+#### 9. How to create a table in HIVE?
+
+```
+CREATE TABLE table_name (
+  column1 data_type,
+  column2 data_type,
+  ...
+) 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ','
+STORED AS textfile;
+```
 
 
 
