@@ -48,3 +48,14 @@ Hive architecture consists of several components, each performing a specific fun
 
 Overall, the Hive architecture is designed to provide a SQL-like interface for querying large volumes of data stored in Hadoop or other compatible file systems. It uses a high-level language (HiveQL) to convert queries into MapReduce jobs, which are executed on the Hadoop cluster. The Metastore stores metadata about the data, while the Execution Engine executes the MapReduce jobs and fetches the results back to the user.
 
+![image](https://user-images.githubusercontent.com/118034802/234181094-38350548-d80e-4b02-a674-8ba241709896.png)
+
+#### 5. Mention what Hive query processor does? And Mention what are the components of a Hive query processor?
+
+
+
+
+
+
+
+
