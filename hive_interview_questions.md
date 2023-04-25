@@ -50,8 +50,6 @@ Overall, the Hive architecture is designed to provide a SQL-like interface for q
 
 ![image](https://user-images.githubusercontent.com/118034802/234181817-c8391cdb-5107-4ac1-b6e5-47649fffe73b.png)
 
-![image](https://user-images.githubusercontent.com/118034802/234181094-38350548-d80e-4b02-a674-8ba241709896.png)
-
 #### 5. Mention what Hive query processor does? And Mention what are the components of a Hive query processor?
 
 
