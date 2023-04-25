@@ -248,7 +248,31 @@ When a managed table is created, Hive creates a directory in the warehouse direc
 * Save the changes to the hive-site.xml configuration file and restart the Hive service for the changes to take effect.
 After changing the default location of the warehouse directory, any new managed tables created in Hive will use the new location for storing the data. However, existing managed tables will still use the old location, and you will need to move the data manually to the new location and update the table location in Hive.
 
+#### 19.What is a metastore in Hive? What is the default database provided by Apache Hive for metastore?
 
+In Hive, a metastore is a central repository that stores metadata information about tables, partitions, columns, and other objects in the Hive warehouse. The metastore serves as a catalog or a schema for Hive, and it is used by the query processor to translate HiveQL statements into physical execution plans.
+
+The metastore can be configured to use different types of databases, such as MySQL, PostgreSQL, Oracle, or Derby, to store the metadata. By default, Apache Hive provides the Derby database as the embedded metastore database, which is suitable for small-scale deployments or testing purposes.
+
+The default database name provided by Apache Hive for the metastore is "default". When a new table is created without specifying a database name, it is created in the default database. However, you can create multiple databases in the metastore and create tables in different databases as needed. The databases in the metastore are isolated from each other, and each database has its own set of tables and metadata information. You can switch between databases using the USE statement in HiveQL.
+
+#### 20. 20.Why does Hive not store metadata information in HDFS?
+
+Hive does not store metadata information in HDFS because HDFS is designed to store large files and is optimized for sequential access, not for random reads and writes. Metadata information, such as table schemas, column names, and partition information, is typically small in size but frequently accessed by the Hive query processor. Storing metadata in HDFS would require frequent small reads and writes, which can be inefficient and slow down the query performance.
+
+Instead of storing metadata in HDFS, Hive uses a separate database or a metastore to store the metadata information. The metastore serves as a central repository for metadata and is optimized for quick access and retrieval of metadata. The metastore can be configured to use different types of databases, such as MySQL, PostgreSQL, Oracle, or Derby, depending on the size and complexity of the Hive deployment.
+
+Separating metadata from data storage also has other advantages, such as allowing for easier backup and recovery of metadata, and enabling metadata sharing and integration with other tools and systems.
+
+#### 21.What is a partition in Hive? And Why do we perform partitioning in Hive?
+
+In Hive, a partition is a way to divide a table into smaller, more manageable parts based on the values of one or more columns. Each partition is stored as a separate directory or subdirectory in HDFS, and contains a subset of the table's data that matches the partitioning criteria.
+
+Partitioning is a powerful feature in Hive that can improve query performance, reduce storage costs, and simplify data management. By partitioning a table, you can restrict the amount of data that needs to be processed for a given query, which can significantly reduce query latency and improve query throughput. For example, if you partition a large sales transaction table by date, you can easily query for sales data within a specific date range, without scanning the entire table.
+
+Partitioning can also help reduce storage costs by allowing you to store only the data that is needed for a given query. Instead of storing the entire table in a single directory, you can store only the relevant partitions and eliminate the need to store redundant data. This can save a significant amount of storage space, especially for large tables.
+
+Finally, partitioning can simplify data management by allowing you to manage data at a more granular level. For example, you can easily add, delete, or modify partitions without affecting the rest of the table, and you can use different storage formats, compression schemes, or indexing strategies for different partitions. This can help improve data organization and accessibility, and enable more flexible and efficient data processing workflows.
 
 
 
