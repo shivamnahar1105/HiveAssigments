@@ -142,6 +142,40 @@ STORED AS textfile;
 
 * **DESCRIBE FORMATTED**: The DESCRIBE FORMATTED command is used to retrieve metadata information about a database or table in a formatted manner. It provides a more readable output than the other two variants of the DESCRIBE command. When used with a database, it displays the list of tables in the database along with their location in HDFS in a formatted manner. When used with a table, it displays the list of columns in the table along with their data types, comments, and other details such as the table type, input format, and output format in a formatted manner.
 
+#### 11.How to skip header rows from a table in Hive?
+
+```
+skip.header.line.count'='2';
+```
+#### 12.What is a hive operator? What are the different types of hive operators?
+
+In Hive, operators are special symbols or keywords that are used to perform different operations on data. There are several types of operators in Hive, including:
+
+* Arithmetic Operators: Arithmetic operators are used to perform mathematical operations on numerical data. The supported arithmetic operators in Hive include +, -, *, /, %, and DIV.
+
+* Comparison Operators: Comparison operators are used to compare two values and return a boolean value (true or false) based on the comparison. The supported comparison operators in Hive include =, <> or !=, <, >, <=, and >=.
+
+* Logical Operators: Logical operators are used to combine boolean expressions and return a boolean value based on the result. The supported logical operators in Hive include AND, OR, and NOT.
+
+* Bitwise Operators: Bitwise operators are used to perform bitwise operations on binary data. The supported bitwise operators in Hive include &, |, ^, ~, <<, and >>.
+
+* Assignment Operators: Assignment operators are used to assign a value to a variable. The supported assignment operators in Hive include =, +=, -=, *= and /=.
+
+* Conditional Operators: Conditional operators are used to select one of two values based on a condition. The supported conditional operators in Hive include CASE, WHEN, THEN, ELSE, and END.
+
+* String Operators: String operators are used to perform operations on string data. The supported string operators in Hive include CONCAT, LENGTH, LOWER, UPPER, and SUBSTR.
+
+These are some of the most commonly used operators in Hive, and they can be used in conjunction with Hive queries to perform various operations on data stored in Hive tables.
+
+
+
+
+
+
+
+
+
+
 
 
 
