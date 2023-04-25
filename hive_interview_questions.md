@@ -134,7 +134,13 @@ FIELDS TERMINATED BY ','
 STORED AS textfile;
 ```
 
+#### 10.What do you mean by describe and describe extended and describe formatted with respect to database and table in Hive ?
 
+* **DESCRIBE**: The DESCRIBE command is used to retrieve basic metadata information about a database or table. When used with a database, it displays the list of tables in the database. When used with a table, it displays the list of columns in the table along with their data types.
+
+* **DESCRIBE EXTENDED**: The DESCRIBE EXTENDED command is used to retrieve additional metadata information about a database or table. When used with a database, it displays the list of tables in the database along with their location in HDFS. When used with a table, it displays the list of columns in the table along with their data types, comments, and other details such as the table type, input format, and output format.
+
+* **DESCRIBE FORMATTED**: The DESCRIBE FORMATTED command is used to retrieve metadata information about a database or table in a formatted manner. It provides a more readable output than the other two variants of the DESCRIBE command. When used with a database, it displays the list of tables in the database along with their location in HDFS in a formatted manner. When used with a table, it displays the list of columns in the table along with their data types, comments, and other details such as the table type, input format, and output format in a formatted manner.
 
 
 
