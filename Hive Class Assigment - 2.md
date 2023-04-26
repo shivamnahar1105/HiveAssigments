@@ -316,7 +316,30 @@ Loading data from hdfs to tables events:
 load data inpath '/user/hive/warehouse/hive_db.db/events.csv' into table events;
 ```
 
+##### Perform a select operation . 
+
+```
+set hive.cli.print.header=True;
+select * from events;
+```
+
+##### 
+
+Fetch the result of the select operation in your local as a csv file . 
+
+```
+INSERT OVERWRITE LOCAL DIRECTORY '/Users/shivamnahar/Downloads' ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' SELECT * FROM events;
+```
+<img width="1133" alt="Screenshot 2023-04-26 at 8 59 34 AM" src="https://user-images.githubusercontent.com/118034802/234462947-f428ba17-69a3-48a4-8215-671b248a758e.png">
+
+
+
+##### Perform group by operation . 
+
+
 ##### alter table operation 
+
+* drop table:
 
 ```
 drop table events;
