@@ -70,6 +70,25 @@ GROUP BY month;
 
 By implementing these steps, you should be able to improve the performance of the query and get the total revenue generated for each month more efficiently.
 
+#### 4.How can you add a new partition for the month December in the above partitioned table?
+
+To add a new partition for the month of December in the above partitioned table "transaction_details_partitioned", you can use the following command:
+
+```
+ALTER TABLE transaction_details_partitioned ADD PARTITION (month='December');
+```
+
+This command will add a new partition for the month of December in the "transaction_details_partitioned" table. Once the partition is added, you can insert the data for December into the new partition using the following command:
+
+```
+INSERT INTO TABLE transaction_details_partitioned PARTITION (month='December')
+SELECT cust_id, amount, country FROM transaction_details WHERE month='December';
+```
+
+This command will insert the data for the month of December from the "transaction_details" table into the new partition of "transaction_details_partitioned" table.
+
+Note that you should ensure that the partition column values in the insert statement match the partition column names and values specified in the partitioned table.
+
 
 
 
