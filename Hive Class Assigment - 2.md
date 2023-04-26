@@ -1,3 +1,6 @@
+## Scenario Based questions:
+<hr>
+
 #### 1. Will the reducer work or not if you use “Limit 1” in any HiveQL query?
 
 Using "LIMIT 1" in a HiveQL query can affect the behavior of the reducer, depending on the specific query and the underlying data.
@@ -198,6 +201,13 @@ Yes, it is possible to add 100 nodes to a Hive cluster that already has 100 node
 * Rebalance the cluster: After adding the new nodes, you will need to rebalance the Hadoop cluster to distribute the data and workload evenly across all nodes. This can be done using the hdfs dfsadmin -report command to check the status of the cluster and the hdfs balancer command to initiate the rebalancing process.
 
 * Verify the configuration: Finally, you should verify that the new nodes are properly configured and functioning as expected. You can check the cluster status using the Hadoop web interfaces or by running commands like hdfs dfs -ls or yarn node -list.
+
+<hr>
+
+## Hive Practical questions:
+
+<hr>
+
 
 
 
