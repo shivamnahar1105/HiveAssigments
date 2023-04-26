@@ -208,6 +208,80 @@ Yes, it is possible to add 100 nodes to a Hive cluster that already has 100 node
 
 <hr>
 
+#### 1.Hive Join operations
+
+Create a  table named CUSTOMERS(ID | NAME | AGE | ADDRESS   | SALARY)
+Create a Second  table ORDER(OID | DATE | CUSTOMER_ID | AMOUNT)
+
+Now perform different joins operations on top of these tables
+(Inner JOIN, LEFT OUTER JOIN ,RIGHT OUTER JOIN ,FULL OUTER JOIN)
+
+<hr>
+
+* Create table CUSTOMERS:
+
+```
+CREATE TABLE CUSTOMERS (
+  ID INT,
+  NAME STRING,
+  AGE INT,
+  ADDRESS STRING,
+  SALARY INT
+);
+```
+
+* Create table ORDERS:
+
+```
+CREATE TABLE ORDERS (
+  OID INT,
+  DATE STRING,
+  CUSTOMER_ID INT,
+  AMOUNT INT
+);
+```
+
+> Inner Join: The inner join returns only the rows that have matching values in both tables.
+
+```
+SELECT *
+FROM CUSTOMERS
+JOIN ORDERS
+ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
+```
+
+> Left Outer Join: The left outer join returns all the rows from the left table (i.e., the table specified before the LEFT OUTER JOIN keyword) and the matching rows from the right table. If there is no match, the right table columns will contain null values.
+
+```
+SELECT *
+FROM CUSTOMERS
+LEFT OUTER JOIN ORDERS
+ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
+```
+
+> RIGHT OUTER JOIN: 
+
+```
+SELECT c.NAME, c.AGE, o.OID, o.DATE, o.AMOUNT
+FROM CUSTOMERS c
+RIGHT OUTER JOIN ORDERS o ON c.ID = o.CUSTOMER_ID;
+```
+
+This query will return all the records from the ORDERS table and the matching records from the CUSTOMERS table. If there are no matching records in the CUSTOMERS table, then NULL values will be returned for the columns of the CUSTOMERS table.
+
+
+> FULL OUTER JOIN: 
+
+```
+SELECT c.NAME, c.AGE, o.OID, o.DATE, o.AMOUNT
+FROM CUSTOMERS c
+FULL OUTER JOIN ORDERS o ON c.ID = o.CUSTOMER_ID;
+```
+
+This query will return all the records from both the CUSTOMERS and ORDERS tables. If there are no matching records in either of the tables, then NULL values will be returned for the columns of the respective table.
+
+### BUILD A DATA PIPELINE WITH HIVE
+
 
 
 
