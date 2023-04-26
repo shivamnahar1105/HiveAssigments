@@ -89,6 +89,138 @@ This command will insert the data for the month of December from the "transactio
 
 Note that you should ensure that the partition column values in the insert statement match the partition column names and values specified in the partitioned table.
 
+#### 5.I am inserting data into a table based on partitions dynamically. But, I received an error – FAILED ERROR IN SEMANTIC ANALYSIS: Dynamic partition strict mode requires at least one static partition column. How will you remove this error?
+
+To remove this error, you can either disable the dynamic partition mode or add at least one static partition column to the table. Here are the two approaches:
+
+* **Disable dynamic partition mode**: If you don't require dynamic partitioning for your use case, you can disable dynamic partition mode in Hive using the following command:
+
+```
+SET hive.exec.dynamic.partition.mode=nonstrict;
+```
+
+This command will disable dynamic partition mode, allowing you to insert data into the partitioned table without any static partition columns. Note that this approach may impact performance, as Hive will scan the entire dataset instead of using partition pruning.
+
+* **Add a static partition column**: If you require dynamic partitioning for your use case, you can add at least one static partition column to the table to remove the error. A static partition column is a column that has a fixed set of values that are defined at the time of table creation.
+
+
+#### 6. Suppose, I have a CSV file – ‘sample.csv’ present in ‘/temp’ directory with the following entries: id first_name last_name email gender ip_address How will you consume this CSV file into the Hive warehouse using built-in SerDe?
+
+To consume a CSV file using the built-in SerDe in Hive, you can follow these steps:
+
+* Create a Hive table with the desired schema. You can use the following command to create a table:
+
+```
+CREATE TABLE sample_table (
+  id INT,
+  first_name STRING,
+  last_name STRING,
+  email STRING,
+  gender STRING,
+  ip_address STRING
+) 
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+  'separatorChar' = ',',
+  'quoteChar' = '\"'
+) 
+STORED AS TEXTFILE;
+```
+
+This command creates a table "sample_table" with the same columns as in the CSV file. The ROW FORMAT SERDE clause specifies the SerDe to use for reading the data from the CSV file. Here, we are using the built-in OpenCSVSerde, which is capable of reading CSV files with a comma as the separator character and double quotes as the quote character. The SERDEPROPERTIES clause specifies the separator and quote characters.
+
+* Load data into the table from the CSV file using the following command:
+
+```
+LOAD DATA INPATH '/temp/sample.csv' INTO TABLE sample_table;
+```
+
+This command loads the data from the CSV file "/temp/sample.csv" into the table "sample_table". The data is stored as text files in HDFS, which is the default storage format for Hive tables.
+
+#### 7. Suppose, I have a lot of small CSV files present in the input directory in HDFS and I want to create a single Hive table corresponding to these files. The data in these files are in the format: {id, name, e-mail, country}. Now, as we know, Hadoop performance degrades when we use lots of small files. So, how will you solve this problem where we want to create a single Hive table for lots of small files without degrading the performance of the system?
+
+To create a single Hive table for lots of small CSV files without degrading the performance of the system, you can use the following approach:
+
+* Combine the small CSV files into larger files: You can use the Hadoop command hdfs dfs -getmerge to merge multiple small files into a larger file. For example, if you have multiple CSV files in the directory /input in HDFS, you can merge them into a single file using the following command:
+
+```
+hdfs dfs -getmerge /input merged_file.csv
+```
+
+This command will merge all the files in the /input directory into a single file named merged_file.csv.
+
+* Load the merged file into a Hive table: Once you have merged the small CSV files into a larger file, you can load the merged file into a Hive table using the same approach as described in the previous answer. For example, you can use the following command to create a Hive table:
+
+```
+CREATE TABLE my_table (
+  id INT,
+  name STRING,
+  email STRING,
+  country STRING
+) 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ',' 
+STORED AS TEXTFILE;
+```
+
+This command creates a table named my_table with the desired schema.
+
+* Load data into the Hive table: After creating the table, you can load data from the merged file into the table using the following command:
+
+```
+LOAD DATA LOCAL INPATH '/path/to/merged_file.csv' INTO TABLE my_table;
+```
+
+This command loads the data from the merged file into the table my_table.
+
+By combining the small CSV files into larger files, you can reduce the number of input files processed by Hadoop, which can improve the performance of the system. However, you should be careful not to create files that are too large, as this can also degrade performance. A good rule of thumb is to keep the file size between 128 MB and 1 GB.
+
+#### 8. LOAD DATA LOCAL INPATH ‘Home/country/state/’ OVERWRITE INTO TABLE address; The following statement failed to execute. What can be the cause?
+
+The LOAD DATA LOCAL INPATH statement you provided has an issue in the path specified. It is missing the root directory (/) at the beginning of the path. The correct statement should be:
+
+```
+LOAD DATA LOCAL INPATH '/Home/country/state/' OVERWRITE INTO TABLE address;
+```
+
+The missing root directory (/) at the beginning of the path could be the reason for the statement's failure to execute. When specifying the path in a Hive command, it is important to provide the complete path to the source data location, starting with the root directory (/).
+
+Additionally, make sure that the path you provided is correct and that the data files are present in that location. If the path is incorrect or the files are not present, the command will fail.
+
+#### 9. Is it possible to add 100 nodes when we already have 100 nodes in Hive? If yes, how?
+
+Yes, it is possible to add 100 nodes to a Hive cluster that already has 100 nodes. To add more nodes, you can follow these general steps:
+
+* Set up the new nodes: You will need to set up the new nodes as part of your Hadoop cluster. This involves installing the Hadoop software, configuring the nodes to work with your existing cluster, and ensuring that they can communicate with the other nodes in the cluster.
+
+* Add the nodes to the cluster: Once the new nodes are set up, you can add them to the Hadoop cluster. This involves updating the Hadoop configuration files to include the new nodes and starting the Hadoop services on the new nodes.
+
+* Rebalance the cluster: After adding the new nodes, you will need to rebalance the Hadoop cluster to distribute the data and workload evenly across all nodes. This can be done using the hdfs dfsadmin -report command to check the status of the cluster and the hdfs balancer command to initiate the rebalancing process.
+
+* Verify the configuration: Finally, you should verify that the new nodes are properly configured and functioning as expected. You can check the cluster status using the Hadoop web interfaces or by running commands like hdfs dfs -ls or yarn node -list.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
