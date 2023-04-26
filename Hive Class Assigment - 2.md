@@ -282,6 +282,30 @@ This query will return all the records from both the CUSTOMERS and ORDERS tables
 
 ### BUILD A DATA PIPELINE WITH HIVE
 
+##### Create a hive table as per given schema in your dataset 
+
+
+```
+create table events (
+id int,
+sport string,
+name string,
+sex string,
+venues string
+)
+row format serde 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+with serdeproperties (
+"separatorChar" = ",",
+> "quoteChar" = "\"",
+"escapeChar" = "\\"
+)
+stored as textfile
+tblproperties ("skip.header.line.count" = "1");
+```
+
+
+  
+
 
 
 
