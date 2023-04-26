@@ -289,6 +289,7 @@ This query will return all the records from both the CUSTOMERS and ORDERS tables
 create table events (
 id int,
 sport string,
+discipline string,
 name string,
 sex string,
 venues string
@@ -296,13 +297,30 @@ venues string
 row format serde 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 with serdeproperties (
 "separatorChar" = ",",
-> "quoteChar" = "\"",
+"quoteChar" = "\"",
 "escapeChar" = "\\"
 )
 stored as textfile
 tblproperties ("skip.header.line.count" = "1");
 ```
 
+##### try to place a data into table location
+
+```
+hadoop fs -put events.csv /user/hive/warehouse/hive_db.db
+```
+
+Loading data from hdfs to tables events:
+
+```
+load data inpath '/user/hive/warehouse/hive_db.db/events.csv' into table events;
+```
+
+##### alter table operation 
+
+```
+drop table events;
+```
 
   
 
