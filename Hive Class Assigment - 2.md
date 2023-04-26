@@ -336,6 +336,41 @@ INSERT OVERWRITE LOCAL DIRECTORY '/Users/shivamnahar/Downloads' ROW FORMAT DELIM
 
 ##### Perform group by operation . 
 
+```
+select count(discipline), sex from events group by sex;
+```
+
+##### Perform filter operation at least 5 kinds of filter examples . 
+
+* where
+
+```
+SELECT * FROM events WHERE sport = 'aquatics';
+```
+
+* comparison 
+
+```
+SELECT * FROM events WHERE id = 519818 and name = 'Men''s 100m Breaststroke';
+```
+
+* Like 
+
+```
+SELECT * FROM events WHERE name LIKE  '%Men%';
+```
+
+* IN
+
+```
+SELECT * FROM events WHERE id IN  (701492, 305278, 729643, 567019);
+```
+
+* BETWEEN
+
+```
+SELECT * FROM events WHERE  ID  BETWEEN 708010 AND 567019;
+```
 
 ##### alter table operation 
 
@@ -344,6 +379,48 @@ INSERT OVERWRITE LOCAL DIRECTORY '/Users/shivamnahar/Downloads' ROW FORMAT DELIM
 ```
 drop table events;
 ```
+
+* order by operation:
+
+```
+SELECT * FROM events order by id;
+```
+
+* where clause operations you have to perform:
+
+```
+SELECT * FROM events WHERE sport = 'aquatics';
+```
+
+* sorting operation examples in hive:
+
+```
+SELECT * FROM events order by id desc;
+```
+
+* distinct operation you have to perform:
+
+```
+select distinct(sport) from events;
+```
+
+* like:
+
+```
+SELECT * FROM events WHERE name LIKE  '%Men%';
+```
+
+* Table view operation:
+
+```
+DESCRIBE events;
+```
+
+
+
+
+
+
 
   
 
