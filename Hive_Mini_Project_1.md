@@ -1,6 +1,6 @@
 ## Hive Mini Project-1
 
-#### Create a schema based on the given dataset
+#### 1. Create a schema based on the given dataset
 
 ```
 create table agent_performance
@@ -46,3 +46,14 @@ with serdeproperties (
 stored as textfile
 tblproperties ("skip.header.line.count" = "1");
 ```
+
+#### 2. Dump the data inside the hdfs in the given schema location.
+
+```
+load data local inpath 'file:///config/workspace/AgentLogingReport.csv' into table agent_logging;
+```
+
+```
+load data local inpath 'file:///config/workspace/AgentPerformance.csv' into table agent_performance;
+```
+
