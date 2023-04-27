@@ -57,3 +57,12 @@ load data local inpath 'file:///config/workspace/AgentLogingReport.csv' into tab
 load data local inpath 'file:///config/workspace/AgentPerformance.csv' into table agent_performance;
 ```
 
+#### 3. List of all agents' names.
+
+```
+Select distinct(agent) from agent_logging;
+```
+
+```
+Select distinct(agent_name) from agent_performance;
+```
